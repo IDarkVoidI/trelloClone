@@ -7,7 +7,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom'
 
 const config = {
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: false,
 }
 

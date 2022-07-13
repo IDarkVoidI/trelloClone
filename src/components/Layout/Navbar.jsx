@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons'
 
 
-export const Navbar = () => {
+export const Navbar = (props) => {
     const { toggleColorMode, colorMode } = useColorMode()
 
     return (
@@ -13,9 +13,10 @@ export const Navbar = () => {
                 <Container maxW={'8xl'}>
                     <HStack alignItems={'center'} justifyContent={'space-between'}>
                         <Heading>Logo</Heading>
-                        <HStack justifyContent='space-between' alignItems={'center'} width={'15%'} gap={10}>
+                        <HStack justifyContent='space-between' alignItems={'center'} gap={10}>
                             <Link to={'/'}>Home</Link>
                             <Link to={'/'}>Boards</Link>
+                            {props.action}
                             <Button onClick={toggleColorMode}>
                                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                             </Button>
@@ -28,7 +29,7 @@ export const Navbar = () => {
     )
 }
 
-const MobileNavbar = () => {
+const MobileNavbar = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { toggleColorMode, colorMode } = useColorMode()
 
@@ -54,6 +55,9 @@ const MobileNavbar = () => {
                         </Box>
                         <Box>
                             <Link to='/'>Boards</Link>
+                        </Box>
+                        <Box>
+                            {props.action}
                         </Box>
                     </DrawerBody>
                 </DrawerContent>
