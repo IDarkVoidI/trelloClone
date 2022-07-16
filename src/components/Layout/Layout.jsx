@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Navbar } from './Navbar'
-import { Box, Container, FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { Box, Container, FormControl, FormLabel, Input, Image } from '@chakra-ui/react'
 import { useLocation } from 'react-router-dom'
 import TrelloCreateModal from '../Modals/TrelloCreateModal'
-
+import { BoardContext } from '../../context/BoardContext'
 
 const Layout = ({ children }) => {
     const location = useLocation()
 
-    const NavbarProps = location.pathname === '/' ? <TrelloCreateModal btnText={'Create'} title='Create A Board'>
-        <FormControl>
+    const { boardBg, setBoardBg, setBoardName, handleSubmit } = useContext(BoardContext)
+
+    const NavbarProps = location.pathname === '/' ? <TrelloCreateModal btnText={'Create'} title='Create A Board' handleSubmit={handleSubmit}>
+        <FormControl isRequired>
             <FormLabel htmlFor='board-name'>Board Name</FormLabel>
-            <Input id='board-name' type={'text'} />
+            <Input id='board-name' type={'text'} onChange={(e) => setBoardName(e.target.value)} />
         </FormControl>
         <FormControl mt={6}>
             <FormLabel htmlFor='board-bg'>Background Image URL</FormLabel>
-            <Input id='board-bg' type={'url'} />
+            <Input id='board-bg' type={'url'} onChange={(e) => setBoardBg(e.target.value)} />
         </FormControl>
+        {boardBg ? <Image mt={3} src={boardBg} alt='background image' /> : ""}
     </TrelloCreateModal> : "";
 
     return (
