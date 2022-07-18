@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Box, Heading, HStack } from '@chakra-ui/react'
-import BoardItem from '../../components/Cards/BoardItem'
-import { BoardContext } from '../../context/BoardContext'
+import BoardItem from '../components/Cards/BoardItem'
+import { BoardContext } from '../context/BoardContext'
 
 const Home = () => {
     const { allBoards } = useContext(BoardContext)

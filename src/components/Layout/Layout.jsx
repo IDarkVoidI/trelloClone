@@ -4,11 +4,14 @@ import { Box, Container, FormControl, FormLabel, Input, Image } from '@chakra-ui
 import { useLocation } from 'react-router-dom'
 import TrelloCreateModal from '../Modals/TrelloCreateModal'
 import { BoardContext } from '../../context/BoardContext'
+import { BgContext } from '../../context/BgContext'
 
 const Layout = ({ children }) => {
     const location = useLocation()
 
     const { boardBg, setBoardBg, setBoardName, handleSubmit } = useContext(BoardContext)
+
+    const { bg } = useContext(BgContext)
 
     const NavbarProps = location.pathname === '/' ? <TrelloCreateModal btnText={'Create'} title='Create A Board' handleSubmit={handleSubmit}>
         <FormControl isRequired>
@@ -23,9 +26,14 @@ const Layout = ({ children }) => {
     </TrelloCreateModal> : "";
 
     return (
-        <Box>
+        <Box
+            bgImage={bg ? bg : "none"}
+            bgColor={bg ? "none" : "blue.200"}
+            bgPos="center"
+            bgSize={"cover"}
+            bgRepeat="no-repeat">
             <Navbar action={NavbarProps} />
-            <Container maxW={'8xl'} mt={20}>{children}</Container>
+            <Container maxW={'8xl'} mt={20} minH={'83.9vh'}>{children}</Container>
         </Box>
     )
 }

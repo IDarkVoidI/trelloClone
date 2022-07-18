@@ -9,17 +9,13 @@ export const Navbar = (props) => {
 
     return (
         <>
-            <Box as='nav' padding={'25px 0'} bgColor='blue.400' display={{ base: 'none', md: 'block' }}>
+            <Box as='nav' padding={'25px 0'} bgColor='rgba(255,255,255,0.5)' display={{ base: 'none', md: 'block' }}>
                 <Container maxW={'8xl'}>
                     <HStack alignItems={'center'} justifyContent={'space-between'}>
                         <Heading>Logo</Heading>
                         <HStack justifyContent='space-between' alignItems={'center'} gap={10}>
                             <Link to={'/'}>Home</Link>
-                            <Link to={'/'}>Boards</Link>
                             {props.action}
-                            <Button onClick={toggleColorMode}>
-                                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                            </Button>
                         </HStack>
                     </HStack>
                 </Container>
@@ -35,7 +31,7 @@ const MobileNavbar = (props) => {
 
     return (
         <>
-            <Box display={{ base: 'block', md: 'none' }} bgColor='blue.400' padding={'25px 0'}>
+            <Box display={{ base: 'block', md: 'none' }} bgColor='rgba(255,255,255,0.5)' padding={'25px 0'}>
                 <Container maxW={'8xl'}>
                     <HStack>
                         <Heading>Logo</Heading>
