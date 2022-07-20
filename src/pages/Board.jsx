@@ -37,7 +37,7 @@ const Board = () => {
                 mt={10} bgColor='rgba(255,255,255,0.5)'
             >
                 <Box display={'flex'} justifyContent='space-between'>
-                    <Heading as={'h2'}>{board.name}</Heading><BoardMenu />
+                    <Heading as={'h2'}>{board.name}</Heading><BoardMenu board={board} />
                 </Box>
             </Box>
             <HStack mt={2} alignItems='start'>

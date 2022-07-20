@@ -27,7 +27,7 @@ export const useBoard = () => {
     const handleEdit = (id, object) => {
         const updatedBoard = allBoards.map(obj => {
             if (obj.id === id) {
-                return obj = object
+                return (obj = { ...obj, ...object })
             }
             return obj
         })

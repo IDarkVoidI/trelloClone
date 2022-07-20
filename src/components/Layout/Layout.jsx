@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
             bgSize={"cover"}
             bgRepeat="no-repeat">
             <Navbar action={NavbarProps} />
-            <Container maxW={'8xl'} mt={20} minH={'83.9vh'}>{children}</Container>
+            <Container maxW={'8xl'} mt={20} minH={'87vh'}>{children}</Container>
         </Box>
     )
 }
