@@ -1,6 +1,11 @@
 import React, { createContext, useState } from "react";
 
-export const CardContext = createContext({ cards: [], setCards: undefined, handleCreateCard: undefined });
+export const CardContext = createContext({
+  cards: [],
+  setCards: undefined,
+  handleCreateCard: undefined,
+  handleMoveCard: undefined,
+});
 
 const CardProvider = ({ children }) => {
   const [cards, setCards] = useState([]);
@@ -16,7 +21,24 @@ const CardProvider = ({ children }) => {
     localStorage.setItem("cards", JSON.stringify([...cards, cardObj]));
   };
 
-  return <CardContext.Provider value={{ cards, setCards, handleCreateCard }}>{children}</CardContext.Provider>;
+  const handleMoveCard = (column_id, id) => {
+    const updatedCards = cards?.map((c) => {
+      if (c.id === id) {
+        c.column_id = column_id;
+        return c;
+      }
+      return c;
+    });
+
+    setCards(updatedCards);
+    localStorage.setItem("cards", JSON.stringify(updatedCards));
+  };
+
+  return (
+    <CardContext.Provider value={{ cards, setCards, handleCreateCard, handleMoveCard }}>
+      {children}
+    </CardContext.Provider>
+  );
 };
 
 export default CardProvider;

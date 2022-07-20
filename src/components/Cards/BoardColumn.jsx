@@ -4,7 +4,7 @@ import ColumnItem from "./ColumnItem";
 import { v4 as uuid } from "uuid";
 import { CardContext } from "../../context/CardContext";
 
-const BoardColumn = ({ title, column_id, columnItems, board_id }) => {
+const BoardColumn = ({ title, column_id, columnItems, board_id, nextColumnId, prevColumnId }) => {
   const { isOpen, onToggle } = useDisclosure();
   const [cardTitle, setCardTitle] = useState("");
   const { handleCreateCard } = useContext(CardContext);
@@ -29,7 +29,7 @@ const BoardColumn = ({ title, column_id, columnItems, board_id }) => {
           {title}
         </Heading>
         {columnItems?.map((el) => (
-          <ColumnItem key={el.id} text={el.title} />
+          <ColumnItem key={el.id} text={el.title} nextColumnId={nextColumnId} prevColumnId={prevColumnId} id={el.id} />
         ))}
         {!isOpen ? (
           <Button w={"100%"} variant="solid" bgColor={"white"} onClick={onToggle}>

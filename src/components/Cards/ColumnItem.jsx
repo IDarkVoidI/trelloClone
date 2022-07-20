@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Button, Text } from "@chakra-ui/react";
-const ColumnItem = ({ text, id }) => {
+import { CardContext } from "../../context/CardContext";
+
+const ColumnItem = ({ text, id, prevColumnId, nextColumnId }) => {
+  const { handleMoveCard } = useContext(CardContext);
+
+  const handleNext = () => {
+    console.log(nextColumnId, id);
+    handleMoveCard(nextColumnId, id);
+  };
+
+  const handlePrev = () => {
+    handleMoveCard(prevColumnId, id);
+  };
   return (
     <Box
       display={"flex"}
@@ -14,8 +26,12 @@ const ColumnItem = ({ text, id }) => {
     >
       <Text>{text}</Text>
       <div>
-        <Button variant={"ghost"}>{"<"}</Button>
-        <Button variant={"ghost"}>{">"}</Button>
+        <Button variant={"ghost"} onClick={handlePrev}>
+          {"<"}
+        </Button>
+        <Button variant={"ghost"} onClick={handleNext}>
+          {">"}
+        </Button>
       </div>
     </Box>
   );
