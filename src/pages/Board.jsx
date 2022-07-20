@@ -4,6 +4,7 @@ import { Box, Heading, HStack } from '@chakra-ui/react'
 import { BoardContext } from '../context/BoardContext'
 import { BgContext } from '../context/BgContext'
 import BoardColumn from '../components/Cards/BoardColumn'
+import BoardMenu from '../components/Modals/BoardMenu'
 
 const Board = () => {
     const { allBoards } = useContext(BoardContext)
@@ -35,12 +36,14 @@ const Board = () => {
             <Box
                 mt={10} bgColor='rgba(255,255,255,0.5)'
             >
-                <Heading as={'h2'}>{board.name}</Heading>
+                <Box display={'flex'} justifyContent='space-between'>
+                    <Heading as={'h2'}>{board.name}</Heading><BoardMenu />
+                </Box>
             </Box>
             <HStack mt={2} alignItems='start'>
-                <BoardColumn column_id={1212} title='Column 1' columnItems={cards?.filter((card) => card.column_id == '1212')} onSubmit={handleCreateCard} />
-                <BoardColumn column_id={12123} title='Column 2' columnItems={cards?.filter((card) => card.column_id == '12123')} onSubmit={handleCreateCard} />
-                <BoardColumn column_id={12125} title='Column 3' columnItems={cards?.filter((card) => card.column_id == '12125')} onSubmit={handleCreateCard} />
+                <BoardColumn column_id={1212} title='Column 1' columnItems={cards?.filter((card) => card.column_id === 1212)} onSubmit={handleCreateCard} />
+                <BoardColumn column_id={12123} title='Column 2' columnItems={cards?.filter((card) => card.column_id === 12123)} onSubmit={handleCreateCard} />
+                <BoardColumn column_id={12125} title='Column 3' columnItems={cards?.filter((card) => card.column_id === 12125)} onSubmit={handleCreateCard} />
             </HStack>
         </Box>
     )

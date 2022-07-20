@@ -12,18 +12,20 @@ const BoardItem = ({ name, bg, id, favorite }) => {
     }
 
     return (
-        <Link to={id}>
-            <Box borderRadius={'13px'} cursor={'pointer'} padding={'10px 15px'} width={'250px'} height={'180px'} bgImage={bg ? bg : 'none'} bgColor={bg ? 'none' : 'grey'} bgPos='center' bgSize={'cover'} bgRepeat='no-repeat'
+        <>
+            <Box borderRadius={'13px'} padding={'10px 15px'} width={'250px'} height={'180px'} bgImage={bg ? bg : 'none'} bgColor={bg ? 'none' : 'grey'} bgPos='center' bgSize={'cover'} bgRepeat='no-repeat'
                 sx={{
                     transition: 'all .2s ease-in-out',
                     _hover: {
                         transform: 'scale(1.1)',
                     }
                 }}>
-                <Heading as={'h3'}>{name}</Heading>
-                <StarIcon onClick={handleClickStar} fontSize={'20px'} transition={'all .2s ease-in-out'} color={favorite ? 'yellow.300' : 'white'} _hover={{ color: 'yellow.300', transform: 'scale(1.2)' }} />
+                <Link to={id}>
+                    <Heading as={'h3'} cursor={'pointer'}>{name}</Heading>
+                </Link>
+                <StarIcon cursor={'pointer'} onClick={handleClickStar} fontSize={'20px'} transition={'all .2s ease-in-out'} color={favorite ? 'yellow.300' : 'white'} _hover={{ color: 'yellow.300', transform: 'scale(1.2)' }} />
             </Box>
-        </Link>
+        </>
     )
 }
 
