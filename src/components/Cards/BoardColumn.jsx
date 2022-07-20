@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Box, VStack, Heading, Button, useDisclosure, Textarea, HStack } from '@chakra-ui/react'
 import ColumnItem from './ColumnItem'
 import { v4 as uuid } from 'uuid'
+import { CardContext } from '../../context/CardContext'
 
-const BoardColumn = ({ title, column_id, columnItems, onSubmit }) => {
+const BoardColumn = ({ title, column_id, columnItems, board_id }) => {
     const { isOpen, onToggle } = useDisclosure()
     const [cardTitle, setCardTitle] = useState("")
+    const { handleCreateCard } = useContext(CardContext)
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const id = uuid()
-        onSubmit(column_id, cardTitle, id)
+        handleCreateCard(column_id, cardTitle, id, board_id)
         setCardTitle("")
         onToggle()
     }

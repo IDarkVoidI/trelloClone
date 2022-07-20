@@ -5,13 +5,14 @@ import { BoardContext } from '../context/BoardContext'
 import { BgContext } from '../context/BgContext'
 import BoardColumn from '../components/Cards/BoardColumn'
 import BoardMenu from '../components/Modals/BoardMenu'
+import { CardContext } from '../context/CardContext'
 
 const Board = () => {
     const { allBoards } = useContext(BoardContext)
     const route = useParams()
     const { setBg } = useContext(BgContext)
     const board = allBoards.find((board) => board.id === route.id)
-    const [cards, setCards] = useState([])
+    const { cards, setCards } = useContext(CardContext)
 
     useEffect(() => {
         setBg(board.bg)
@@ -20,16 +21,6 @@ const Board = () => {
         setCards(filteredCards || [])
     }, [])
 
-    const handleCreateCard = (column_id, title, id) => {
-        const cardObj = {
-            board_id: board.id,
-            column_id,
-            title,
-            id
-        }
-        setCards([...cards, cardObj])
-        localStorage.setItem('cards', JSON.stringify([...cards, cardObj]))
-    }
 
     return (
         <Box>
@@ -41,9 +32,9 @@ const Board = () => {
                 </Box>
             </Box>
             <HStack mt={2} alignItems='start'>
-                <BoardColumn column_id={1212} title='Column 1' columnItems={cards?.filter((card) => card.column_id === 1212)} onSubmit={handleCreateCard} />
-                <BoardColumn column_id={12123} title='Column 2' columnItems={cards?.filter((card) => card.column_id === 12123)} onSubmit={handleCreateCard} />
-                <BoardColumn column_id={12125} title='Column 3' columnItems={cards?.filter((card) => card.column_id === 12125)} onSubmit={handleCreateCard} />
+                <BoardColumn column_id={1212} title='Todo' columnItems={cards?.filter((card) => card.column_id === 1212)} board_id={board.id} />
+                <BoardColumn column_id={12123} title='In Progress' columnItems={cards?.filter((card) => card.column_id === 12123)} board_id={board.id} />
+                <BoardColumn column_id={12125} title='Done' columnItems={cards?.filter((card) => card.column_id === 12125)} board_id={board.id} />
             </HStack>
         </Box>
     )
