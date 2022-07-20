@@ -4,7 +4,7 @@ import ColumnItem from './ColumnItem'
 import { v4 as uuid } from 'uuid'
 import { CardContext } from '../../context/CardContext'
 
-const BoardColumn = ({ title, column_id, columnItems, board_id }) => {
+const BoardColumn = ({ title, column_id, columnItems, board_id, nextColumnId, prevColumnId }) => {
     const { isOpen, onToggle } = useDisclosure()
     const [cardTitle, setCardTitle] = useState("")
     const { handleCreateCard } = useContext(CardContext)
@@ -20,7 +20,7 @@ const BoardColumn = ({ title, column_id, columnItems, board_id }) => {
         <Box>
             <VStack w={'280px'} bgColor={'rgba(255,255,255,0.5)'} alignItems='start' borderRadius={'4px'} padding={'5px 10px'}>
                 <Heading as={'h4'} size={'md'}>{title}</Heading>
-                {columnItems?.map(el => <ColumnItem key={el.id} text={el.title} />)}
+                {columnItems?.map(el => <ColumnItem key={el.id} text={el.title} nextColumnId={nextColumnId} prevColumnId={prevColumnId} id={el.id} />)}
                 {!isOpen ? (<Button w={'100%'} variant='solid' bgColor={'white'} onClick={onToggle}>Add a card</Button>) : (
                     <form onSubmit={handleSubmit}>
                         <Textarea required placeholder='Enter a title for this card!' value={cardTitle} onChange={(e) => setCardTitle(e.target.value)} />

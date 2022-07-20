@@ -32,9 +32,9 @@ const Board = () => {
                 </Box>
             </Box>
             <HStack mt={2} alignItems='start'>
-                <BoardColumn column_id={1212} title='Todo' columnItems={cards?.filter((card) => card.column_id === 1212)} board_id={board.id} />
-                <BoardColumn column_id={12123} title='In Progress' columnItems={cards?.filter((card) => card.column_id === 12123)} board_id={board.id} />
-                <BoardColumn column_id={12125} title='Done' columnItems={cards?.filter((card) => card.column_id === 12125)} board_id={board.id} />
+                <BoardColumn column_id={1212} title='Todo' columnItems={cards?.filter((card) => card.column_id === 1212)} board_id={board.id} nextColumnId={12123} prevColumnId={null} />
+                <BoardColumn column_id={12123} title='In Progress' columnItems={cards?.filter((card) => card.column_id === 12123)} board_id={board.id} nextColumnId={12125} prevColumnId={1212} />
+                <BoardColumn column_id={12125} title='Done' columnItems={cards?.filter((card) => card.column_id === 12125)} board_id={board.id} nextColumnId={null} prevColumnId={12123} />
             </HStack>
         </Box>
     )
