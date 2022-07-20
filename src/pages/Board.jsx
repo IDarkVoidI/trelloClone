@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Heading, HStack } from '@chakra-ui/react'
 import { BoardContext } from '../context/BoardContext'
