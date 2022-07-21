@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 
-export const CardContext = createContext({ cards: [], setCards: undefined, handleCreateCard: undefined })
+export const CardContext = createContext({ cards: [] })
 
 const CardProvider = ({ children }) => {
     const [cards, setCards] = useState([])
@@ -25,7 +25,7 @@ const CardProvider = ({ children }) => {
             return c
         })
         setCards(updatedCards)
-        localStorage.setItem('cards', JSON.stringify([updatedCards]))
+        localStorage.setItem('cards', JSON.stringify(updatedCards))
     }
 
     return (

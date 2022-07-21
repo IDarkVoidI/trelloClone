@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export const BgContext = createContext({ bg: '', setBg: undefined });
+export const BgContext = createContext({ bg: '' });
 const BgProvider = ({ children }) => {
     const [bg, setBg] = useState('')
     const location = useLocation()

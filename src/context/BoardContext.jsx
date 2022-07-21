@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { useBoard } from "../components/hooks/useBoard";
 
-export const BoardContext = createContext({ allBoards: [], handleSubmit: undefined, handleEdit: undefined, boardBg: "", boardName: "", setBoardBg: undefined, setBoardName: undefined, setAllBoards: undefined, handleFavBoard: undefined })
+export const BoardContext = createContext({ allBoards: [], boardBg: "", boardName: "" })
 
 function BoardProvider(props) {
     const { allBoards, handleEdit, handleSubmit, boardBg, boardName, setBoardBg, setBoardName, setAllBoards, handleFavBoard } = useBoard()

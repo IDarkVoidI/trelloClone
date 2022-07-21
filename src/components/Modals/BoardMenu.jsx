@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu, MenuItem, MenuList, IconButton, MenuButton, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import TrelloEditModal from "./TrelloEditModal";
@@ -21,7 +21,7 @@ const BoardMenu = ({ board }) => {
                     />
                     Edit...
                 </MenuItem>
-                <MenuItem icon={<DeleteIcon />}>Delete</MenuItem>
+                <MenuItem icon={<DeleteIcon />}>Delete...</MenuItem>
             </MenuList>
         </Menu>
     );

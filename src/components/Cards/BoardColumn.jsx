@@ -16,6 +16,7 @@ const BoardColumn = ({ title, column_id, columnItems, board_id, nextColumnId, pr
         setCardTitle("")
         onToggle()
     }
+
     return (
         <Box>
             <VStack w={'280px'} bgColor={'rgba(255,255,255,0.5)'} alignItems='start' borderRadius={'4px'} padding={'5px 10px'}>

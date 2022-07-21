@@ -6,6 +6,24 @@ import { BgContext } from '../context/BgContext'
 import BoardColumn from '../components/Cards/BoardColumn'
 import BoardMenu from '../components/Modals/BoardMenu'
 import { CardContext } from '../context/CardContext'
+import { DragDropContext } from 'react-beautiful-dnd'
+
+const columns = {
+    1: {
+        name: 'To-do',
+        items: []
+    },
+
+    2: {
+        name: 'In-Progress',
+        items: []
+    },
+
+    3: {
+        name: 'Done',
+        items: []
+    },
+}
 
 const Board = () => {
     const { allBoards } = useContext(BoardContext)
@@ -13,6 +31,8 @@ const Board = () => {
     const { setBg } = useContext(BgContext)
     const board = allBoards.find((board) => board.id === route.id)
     const { cards, setCards } = useContext(CardContext)
+
+
 
     useEffect(() => {
         setBg(board.bg)
@@ -23,20 +43,27 @@ const Board = () => {
 
 
     return (
-        <Box>
-            <Box
-                mt={10} bgColor='rgba(255,255,255,0.5)'
-            >
-                <Box display={'flex'} justifyContent='space-between'>
-                    <Heading as={'h2'}>{board.name}</Heading><BoardMenu board={board} />
+        <DragDropContext>
+            <Box>
+                <Box
+                    mt={10} bgColor='rgba(255,255,255,0.5)'
+                >
+                    <Box display={'flex'} justifyContent='space-between'>
+                        <Heading as={'h2'}>{board.name}</Heading><BoardMenu board={board} />
+                    </Box>
                 </Box>
+                <HStack mt={2} alignItems='start'>
+                    {
+                        // It turns an object into an array (list)
+                        Object.entries(columns).map(([column_id, column]) => {
+                            return (
+                                <BoardColumn key={column_id} column_id={column_id} title={column.name} columnItems={cards?.filter((card) => card.column_id === 1212)} />
+                            )
+                        })
+                    }
+                </HStack>
             </Box>
-            <HStack mt={2} alignItems='start'>
-                <BoardColumn column_id={1212} title='Todo' columnItems={cards?.filter((card) => card.column_id === 1212)} board_id={board.id} nextColumnId={12123} prevColumnId={null} />
-                <BoardColumn column_id={12123} title='In Progress' columnItems={cards?.filter((card) => card.column_id === 12123)} board_id={board.id} nextColumnId={12125} prevColumnId={1212} />
-                <BoardColumn column_id={12125} title='Done' columnItems={cards?.filter((card) => card.column_id === 12125)} board_id={board.id} nextColumnId={null} prevColumnId={12123} />
-            </HStack>
-        </Box>
+        </DragDropContext>
     )
 }
 
